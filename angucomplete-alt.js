@@ -249,8 +249,12 @@
           return;
         }
 
-        if (which === KEY_UP || which === KEY_EN) {
+        if (which === KEY_UP) {
           event.preventDefault();
+        }
+        if (which === KEY_EN) {
+          callOrAssign(scope.searchStr);
+          clearResults();
         }
         else if (which === KEY_DW) {
           event.preventDefault();
@@ -706,6 +710,7 @@
         else if (str.length === 0 && minlength === 0) {
           scope.searching = false;
           showAll();
+          callOrAssign(str);
         }
 
         if (scope.inputChanged) {
