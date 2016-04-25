@@ -251,13 +251,10 @@
           return;
         }
 
-        if (which === KEY_UP) {
+        if (which === KEY_UP || which === KEY_EN) {
           event.preventDefault();
         }
-        if (which === KEY_EN) {
-          callOrAssign(scope.searchStr);
-          clearResults();
-        }
+
         else if (which === KEY_DW) {
           event.preventDefault();
           if (!scope.showDropdown && scope.searchStr && scope.searchStr.length >= minlength) {
@@ -362,8 +359,9 @@
             event.preventDefault();
             scope.selectResult(scope.results[scope.currentIndex]);
           } else {
-            handleOverrideSuggestions(event);
+            callOrAssign(scope.searchStr);
             clearResults();
+            handleOverrideSuggestions(event);
           }
           scope.$apply();
         } else if (which === KEY_DW && scope.results) {
@@ -712,7 +710,6 @@
         else if (str.length === 0 && minlength === 0) {
           scope.searching = false;
           showAll();
-          callOrAssign(str);
         }
 
         if (scope.inputChanged) {
