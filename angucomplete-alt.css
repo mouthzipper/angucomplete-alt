@@ -34,6 +34,10 @@
     margin-bottom: 4px;
     clear: both;
 }
+.angucomplete-row:hover {
+    background-color: #EEE;
+    color: #000;
+}
 
 .angucomplete-selected-row {
     background-color: #EEE;
