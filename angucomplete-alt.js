@@ -512,7 +512,10 @@
       }
 
       function initResults() {
-        scope.showDropdown = displaySearching;
+        if(!scope.noDropdown) {
+          scope.showDropdown = displaySearching;
+        }
+
         scope.currentIndex = scope.focusFirst ? 0 : -1;
         scope.results = [];
       }
@@ -575,6 +578,11 @@
       }
 
       function processResults(responseData, str) {
+        if(scope.noDropdown) {
+          scope.showDropdown = false;
+          callOrAssign(responseData);
+          return;
+        }
         var i, description, image, text, formattedText, formattedDesc;
 
         if (responseData && responseData.length > 0) {
@@ -639,7 +647,7 @@
         if (scope.focusIn) {
           scope.focusIn();
         }
-        if (minlength === 0 && (!scope.searchStr || scope.searchStr.length === 0)) {
+        if (minlength === 0 && (!scope.searchStr || scope.searchStr.length === 0) && !scope.noDropdown) {
           scope.currentIndex = scope.focusFirst ? 0 : scope.currentIndex;
           scope.showDropdown = true;
           showAll();
@@ -816,7 +824,8 @@
         fieldTabindex: '@',
         inputName: '@',
         focusFirst: '@',
-        parseInput: '&'
+        parseInput: '&',
+        noDropdown: '@',
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
