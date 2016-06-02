@@ -694,6 +694,10 @@
         if (scope.matchClass) {
           result.title = extractTitle(result.originalObject);
           result.description = extractValue(result.originalObject, scope.descriptionField);
+          // return original search string if searchInArray is true
+          if (scope.searchInArray === 'true') {
+            result.searchString = scope.searchStr;
+          }
         }
 
         if (scope.clearSelected) {
@@ -826,6 +830,7 @@
         focusFirst: '@',
         parseInput: '&',
         noDropdown: '@',
+        searchInArray: '@',
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
