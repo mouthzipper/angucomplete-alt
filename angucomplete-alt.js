@@ -208,11 +208,19 @@
         if (key) {
           keys= key.split('.');
           result = obj;
-          for (var i = 0; i < keys.length; i++) {
-            result = result[keys[i]];
+          if(scope.searchInArray && (keys[1] === 'productName' || keys[1] === 'po')) {
+            var numberOfProducts = result[keys[0]].length;
+            var resArray = [];
+            for (var i = 0; i < numberOfProducts; i++) {
+              resArray.push(result.products[i][keys[1]]);
+            }
+            result = resArray.toString();
+          } else {
+            for (var y = 0; y < keys.length; y++) {
+              result = result[keys[y]];
+            }
           }
-        }
-        else {
+        } else {
           result = obj;
         }
         return result;
