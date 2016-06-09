@@ -704,7 +704,7 @@
           result.description = extractValue(result.originalObject, scope.descriptionField);
           // return original search string if searchInArray is true
           if (scope.searchInArray === 'true') {
-            result.searchString = scope.searchStr;
+            result.searchString = result.title.split(',')[0];
           }
         }
 
