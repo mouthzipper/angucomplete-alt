@@ -208,7 +208,7 @@
         if (key) {
           keys= key.split('.');
           result = obj;
-          if(scope.searchInArray && (keys[1] === 'productName' || keys[1] === 'po')) {
+          if(scope.searchInArray && (keys[1] === 'name' || keys[1] === 'poNumber')) {
             var numberOfProducts = result[keys[0]].length;
             var resArray = [];
             for (var i = 0; i < numberOfProducts; i++) {
